@@ -1,23 +1,27 @@
 <template>
-  <div class="sidebar" id="sidebar">
-    <el-radio-group id="dictType" v-if="types.length">
-      <el-radio v-for="(item, key) in types" :key="{key}" @click="changeType" value="item.type" name="types">{{ item.name }}</el-radio>
-    </el-radio-group>
+  <div>
+    <RadioGroup id="dictType" v-if="types.length" v-model="current" >
+      <ElRow v-for="item of types" :key="item.type">
+        <ElRadio :label="item.type" name="types" class="type" border>{{ item.name }}</ElRadio>
+      </ElRow>
+    </RadioGroup>
   </div>
 </template>
 
 <script>
-import { Radio } from 'element-ui'
+import { Radio, RadioGroup, Row } from 'element-ui'
 
 export default {
-  props: ['types', 'checked'],
-  methods: {
-    changeType (event) {
-      this.cheked = event.target.value
-    }
-  },
+  props: ['types'],
   components: {
-    Radio
+    ElRow: Row,
+    ElRadio: Radio,
+    RadioGroup
+  },
+  data () {
+    return {
+      current: 'youdao'
+    }
   }
 }
 </script>
@@ -25,6 +29,9 @@ export default {
 <style>
 .type {
   color: black;
+  padding: 10px 0;
+  margin: 5px 0;
+  text-align:center;
 }
 .active {
   color: green;

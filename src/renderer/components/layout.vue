@@ -1,17 +1,15 @@
 <template>
   <div class="container" id="container">
-    <el-row>
-      <el-col span=6 class="sidebar">
-        <side-bar :types="dictTypes"></side-bar>
-      </el-col>
-      <el-col span=18 class="translate">
-      </el-col>
-    </el-row>
+    <ElCol :span="6" class="sidebar">
+      <side-bar :types="dictTypes" key="sidebar"></side-bar>
+    </ElCol>
+    <ElCol :span="18" class="translate">
+    </ElCol>
   </div> 
 </template>
 
 <script>
-  import { Row, Col, Radio } from 'element-ui'
+  import { Row, Col } from 'element-ui'
   import SideBar from './sidebar'
   import Translate from './translate'
 
@@ -19,16 +17,16 @@
     data () {
       return {
         dictTypes: [
-          {type: 'youdao', name: '有道'}
+          {type: 'youdao', name: '有道'},
+          {type: 'baidu', name: '百度'}
         ]
       }
     },
     components: {
       SideBar,
       Translate,
-      Row,
-      Col,
-      Radio
+      ElCol: Col,
+      ElRow: Row
     }
   }
 </script>
@@ -43,9 +41,13 @@
     height: 100%;
   }
   .sidebar {
+    text-align: center;
     height: 100%;
     width: 30%;
     display: inline-block;
-    background-color: darkgray;
+    border-right: darkblue solid 1px;
+  }
+  .sidebar>div {
+    height: 100% !important;
   }
 </style>
