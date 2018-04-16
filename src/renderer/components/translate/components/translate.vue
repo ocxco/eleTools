@@ -45,7 +45,7 @@
     },
     methods: {
       langChange (lang) {
-        this.$store.commit('CURRENT_LANG_CHANGE', lang)
+        this.$store.commit('CHANGE_CURRENT_LANG', lang)
       },
       translate () {
         this.$store.dispatch('doTranslate', {
