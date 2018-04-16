@@ -1,17 +1,18 @@
 <template>
   <div class="container" id="container">
-    <ElCol :span="6" class="sidebar">
+    <ElCol :span="6" class="left fullHeight">
       <side-bar :types="dictTypes" key="sidebar"></side-bar>
     </ElCol>
-    <ElCol :span="18" class="translate">
+    <ElCol :span="18" class="right fullHeight">
+      <Translate />
     </ElCol>
   </div> 
 </template>
 
 <script>
   import { Row, Col } from 'element-ui'
-  import SideBar from './sidebar'
-  import Translate from './translate'
+  import SideBar from './components/sidebar'
+  import Translate from './components/translate'
 
   export default {
     data () {
@@ -40,14 +41,17 @@
   html,body,.container {
     height: 100%;
   }
-  .sidebar {
-    text-align: center;
+  .fullHeight {
     height: 100%;
-    width: 30%;
-    display: inline-block;
+  }
+  .fullWidth {
+    width: 100%;
+  }
+  .left {
+    text-align: center;
     border-right: darkblue solid 1px;
   }
-  .sidebar>div {
+  .left>div {
     height: 100% !important;
   }
 </style>

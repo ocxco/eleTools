@@ -1,10 +1,10 @@
 const state = {
-  main: 0
+  currentLang: 'en => zh'
 }
 
 const mutations = {
-  DECREMENT_MAIN_COUNTER (state) {
-    state.main--
+  CHANGE_CURRENT_LANG (state, lang) {
+    state.currentLang = lang
   },
   INCREMENT_MAIN_COUNTER (state) {
     state.main++

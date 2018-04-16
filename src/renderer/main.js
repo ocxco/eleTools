@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import axios from 'axios'
 
-import Layout from './components/layout'
+import Translate from './components/translate'
 import router from './router'
 import store from './store'
 
@@ -11,8 +11,8 @@ Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
-  components: { Layout },
+  components: { Translate },
   router,
   store,
-  template: '<Layout/>'
+  template: '<Translate />'
 }).$mount('#app')
