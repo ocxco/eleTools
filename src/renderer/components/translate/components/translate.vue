@@ -5,7 +5,7 @@
     </Row>
     <Row class="options">
       <ElCol span=12>
-        <ElSelect class="fullHeight fullWidth" :change="langChange" v-model="current">
+        <ElSelect class="fullHeight fullWidth" :change="langChange" :value="current">
           <ElOption 
             v-for="item in lang" 
             :key="item.value"

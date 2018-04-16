@@ -4,12 +4,14 @@ import axios from 'axios'
 import App from './App'
 import router from './router'
 import store from './store'
+import api from '@/components/api'
+console.log(api.post)
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
+Vue.api = Vue.prototype.$api = api
 Vue.config.productionTip = false
 
-console.log(router)
 /* eslint-disable no-new */
 new Vue({
   components: { App },

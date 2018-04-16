@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 const state = {
-  currentLang: 'auto => auto',
+  currentLang: 'zh => en',
   res: ''
 }
 
@@ -18,9 +18,9 @@ const mutations = {
 const actions = {
   doTranslate ({ commit }, data) {
     // do something async
-    Vue.http.post('http://ele.tools.cn/translate', data).then(res => {
+    Vue.api.post('/translate', data, (res) => {
       console.log(res)
-      commit('CHANGE_RES', data)
+      commit('CHANGE_RES', res.data.data.data.trans_result[0].dst)
     })
   }
 }
