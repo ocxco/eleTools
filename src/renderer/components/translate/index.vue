@@ -1,9 +1,9 @@
 <template>
   <div class="container" id="container">
-    <ElCol :span="6" class="left fullHeight">
+    <ElCol span=6 class="left fullHeight">
       <side-bar :types="dictTypes" key="sidebar"></side-bar>
     </ElCol>
-    <ElCol :span="18" class="right fullHeight">
+    <ElCol span=18 class="right fullHeight">
       <Translate />
     </ElCol>
   </div> 

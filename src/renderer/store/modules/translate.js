@@ -1,20 +1,27 @@
+import Vue from 'vue'
+
 const state = {
-  currentLang: 'en => zh'
+  currentLang: 'auto => auto',
+  res: ''
 }
 
 const mutations = {
   CHANGE_CURRENT_LANG (state, lang) {
+    console.log(lang)
     state.currentLang = lang
   },
-  INCREMENT_MAIN_COUNTER (state) {
-    state.main++
+  CHANGE_RES (state, res) {
+    state.res = res
   }
 }
 
 const actions = {
-  someAsyncTask ({ commit }) {
+  doTranslate ({ commit }, data) {
     // do something async
-    commit('INCREMENT_MAIN_COUNTER')
+    Vue.http.post('http://ele.tools.cn/translate', data).then(res => {
+      console.log(res)
+      commit('CHANGE_RES', data)
+    })
   }
 }
 

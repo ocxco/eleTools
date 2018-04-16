@@ -1,10 +1,10 @@
 <template>
   <Row id="translate" class="translate">
-    <Row class="textarea english">
-      <ElInput type="textarea" resize="none" />
+    <Row class="textarea">
+      <ElInput type="textarea" resize="none" v-model="q" />
     </Row>
     <Row class="options">
-      <ElCol span="12">
+      <ElCol span=12>
         <ElSelect class="fullHeight fullWidth" :change="langChange" v-model="current">
           <ElOption 
             v-for="item in lang" 
@@ -15,12 +15,12 @@
           </ElOption>
         </ElSelect>
       </ElCol>
-      <ElCol span=12>
-        <ElButton class="fullHeight fullWidth"/>
+      <ElCol span=12 class="fullHeight">
+        <ElButton class="fullHeight fullWidth" type="primary" @click="translate">翻译</ElButton>/>
       </ElCol>
     </Row>
-    <Row class="textarea chinese">
-      <ElInput type="textarea" readonly resize="none" />
+    <Row class="textarea">
+      <ElInput type="textarea" readonly resize="none" :value="res" />
     </Row>
   </Row>
 </template>
@@ -30,9 +30,11 @@
   export default {
     data () {
       return {
-        res: this.$store.state.translate.res,
-        current: this.$store.state.translate.currentLang,
+        q: '',
         lang: [{
+          label: '自动',
+          value: 'auto => auto'
+        }, {
           label: '中 => 英',
           value: 'zh => en'
         }, {
@@ -42,14 +44,30 @@
       }
     },
     methods: {
-      langChange: (lang) => {
+      langChange (lang) {
         this.$store.commit('CURRENT_LANG_CHANGE', lang)
+      },
+      translate () {
+        this.$store.dispatch('doTranslate', {
+          q: this.q,
+          from: this.from,
+          to: this.to
+        })
       }
     },
     computed: {
-      from: () => {
-        
+      res: function () {
+        return this.$store.state.translate.res
       },
+      current: function () {
+        return this.$store.state.translate.currentLang
+      },
+      from: function () {
+        return this.current.split('=>')[0].trim()
+      },
+      to: function () {
+        return this.current.split('=>')[1].trim()
+      }
     },
     components: {
       ElInput: Input,
@@ -68,13 +86,13 @@
     /* background-color: darkgray; */
 }
 .textarea {
-  height: 43%;
+  height: 45%;
 }
 .textarea div, .textarea textarea {
   height: 100%;
 }
 .options {
-  height: 10%;
+  height: 40px;
   text-align: center;
 }
 </style>
